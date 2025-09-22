@@ -2,17 +2,17 @@ const express = require("express");
 const app = express();
 const port = process.env.PORT || 3000;
 
-// gcd function
+// Greatest common divisor
 function gcd(a, b) {
   return b === 0 ? a : gcd(b, a % b);
 }
 
-// lcm function
+// Lowest common multiple
 function lcm(a, b) {
   return (a * b) / gcd(a, b);
 }
 
-// Route using your email
+// Route ending with your email (converted)
 app.get("/skmdshadmansakib_gmail_com", (req, res) => {
   const x = parseInt(req.query.x, 10);
   const y = parseInt(req.query.y, 10);
@@ -24,11 +24,6 @@ app.get("/skmdshadmansakib_gmail_com", (req, res) => {
   res.send(String(lcm(x, y)));
 });
 
-// Optional: root route
-app.get("/", (req, res) => {
-  res.send("Use /skmdshadmansakib_gmail_com?x={}&y={} to get the LCM.");
-});
-
 app.listen(port, () => {
-  console.log(`Server running at http://localhost:${port}/skmdshadmansakib_gmail_com?x=12&y=18`);
+  console.log(`Server running on port ${port}`);
 });
