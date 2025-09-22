@@ -12,7 +12,7 @@ function lcm(a, b) {
   return (a * b) / gcd(a, b);
 }
 
-// Your email route
+// Route using your email
 app.get("/skmdshadmansakib_gmail_com", (req, res) => {
   const x = parseInt(req.query.x, 10);
   const y = parseInt(req.query.y, 10);
@@ -22,6 +22,11 @@ app.get("/skmdshadmansakib_gmail_com", (req, res) => {
   }
 
   res.send(String(lcm(x, y)));
+});
+
+// Optional: root route
+app.get("/", (req, res) => {
+  res.send("Use /skmdshadmansakib_gmail_com?x={}&y={} to get the LCM.");
 });
 
 app.listen(port, () => {
