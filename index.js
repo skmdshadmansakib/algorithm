@@ -2,26 +2,30 @@ const express = require("express");
 const app = express();
 const port = process.env.PORT || 3000;
 
-// Greatest common divisor
+// Greatest common divisor with BigInt
 function gcd(a, b) {
-  return b === 0 ? a : gcd(b, a % b);
+  return b === 0n ? a : gcd(b, a % b);
 }
 
-// Lowest common multiple
+// Lowest common multiple with BigInt
 function lcm(a, b) {
-  return (a * b) / gcd(a, b);
+  return a === 0n || b === 0n ? 0n : (a * b) / gcd(a, b);
 }
 
 // Route ending with your email (converted)
 app.get("/skmdshadmansakib_gmail_com", (req, res) => {
-  const x = parseInt(req.query.x, 10);
-  const y = parseInt(req.query.y, 10);
+  try {
+    const x = BigInt(req.query.x);
+    const y = BigInt(req.query.y);
 
-  if (!Number.isInteger(x) || !Number.isInteger(y) || x <= 0 || y <= 0) {
-    return res.send("NaN");
+    if (x < 0n || y < 0n) {
+      return res.send("NaN");
+    }
+
+    res.send(lcm(x, y).toString());
+  } catch {
+    res.send("NaN");
   }
-
-  res.send(String(lcm(x, y)));
 });
 
 app.listen(port, () => {
