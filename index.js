@@ -9,24 +9,28 @@ function gcd(a, b) {
 
 // Lowest common multiple
 function lcm(a, b) {
-  return (a * b) / gcd(a, b);
+  return (BigInt(a) * BigInt(b)) / BigInt(gcd(a, b));
 }
 
 // Route ending with your email (converted)
 app.get("/skmdshadmansakib_gmail_com", (req, res) => {
-  const x = parseInt(req.query.x, 10);
-  const y = parseInt(req.query.y, 10);
+  const x = req.query.x;
+  const y = req.query.y;
 
-  if (!Number.isInteger(x) || !Number.isInteger(y) || x <= 0 || y <= 0) {
-    // Send NaN as plain text
-    return res.type("text/plain").send("NaN");
+  // Validate numbers
+  if (
+    x === undefined || y === undefined ||
+    isNaN(x) || isNaN(y) ||
+    !Number.isInteger(Number(x)) || !Number.isInteger(Number(y)) ||
+    Number(x) < 0 || Number(y) < 0
+  ) {
+    return res.send("NaN");
   }
 
   // Send LCM as plain text
   res.type("text/plain").send(String(lcm(x, y)));
 });
 
-// Do not log anything that goes into the HTTP response
 app.listen(port, () => {
   console.log(`Server running on port ${port}`);
 });
