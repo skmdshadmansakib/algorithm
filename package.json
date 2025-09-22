@@ -1,23 +1,14 @@
 {
   "name": "algorithm",
   "version": "1.0.0",
-<<<<<<< HEAD
   "description": "LCM API for Task 3",
-=======
-  "description": "",
->>>>>>> 5ee7cf13e145bd279d588a38c0f03bf5f4484bfd
   "main": "index.js",
   "scripts": {
     "start": "node index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-<<<<<<< HEAD
   "keywords": ["lcm", "api", "express", "task3"],
   "author": "skmdshadmansakib",
-=======
-  "keywords": [],
-  "author": "",
->>>>>>> 5ee7cf13e145bd279d588a38c0f03bf5f4484bfd
   "license": "ISC",
   "dependencies": {
     "express": "^5.1.0"
