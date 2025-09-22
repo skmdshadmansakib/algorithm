@@ -2,30 +2,50 @@ const express = require("express");
 const app = express();
 const port = process.env.PORT || 3000;
 
-// Greatest common divisor
+// Greatest common divisor (supports BigInt)
 function gcd(a, b) {
-  return b === 0 ? a : gcd(b, a % b);
+  a = BigInt(a);
+  b = BigInt(b);
+  while (b !== 0n) {
+    [a, b] = [b, a % b];
+  }
+  return a;
 }
 
 // Lowest common multiple
 function lcm(a, b) {
+  a = BigInt(a);
+  b = BigInt(b);
   return (a * b) / gcd(a, b);
 }
 
 // Route ending with your email (converted)
 app.get("/skmdshadmansakib_gmail_com", (req, res) => {
-  const x = parseInt(req.query.x, 10);
-  const y = parseInt(req.query.y, 10);
+  try {
+    const x = req.query.x;
+    const y = req.query.y;
 
-  // Validate input
-  if (!Number.isInteger(x) || !Number.isInteger(y) || x < 0 || y < 0) {
-    return res.send('<pre style="white-space: pre-wrap">NaN</pre>');
+    // Missing params or not integers
+    if (x === undefined || y === undefined) {
+      return res.send("NaN");
+    }
+
+    // Convert to BigInt
+    const xi = BigInt(x);
+    const yi = BigInt(y);
+
+    // Non-natural numbers (if bot treats 0 as natural, adjust accordingly)
+    if (xi < 0n || yi < 0n) return res.send("NaN");
+
+    // Send as plain string, no HTML
+    res.setHeader("Content-Type", "text/plain");
+    return res.send(String(lcm(xi, yi)));
+  } catch (err) {
+    return res.send("NaN"); // Catch invalid input (like letters)
   }
-
-  const result = lcm(x, y);
-  res.send(`<pre style="white-space: pre-wrap">${result}</pre>`);
 });
 
+// Start server
 app.listen(port, () => {
-  console.log(`Server running at http://localhost:${port}/skmdshadmansakib_gmail_com?x=12&y=18`);
+  console.log(`Server running on port ${port}`);
 });
