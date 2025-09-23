@@ -48,7 +48,7 @@ npm install
 3. **Start the server**
 npm start
 
-**Testing the API**
+## Testing the API
 Use your browser or tools like curl or Postman.
 
 Endpoint pattern:
@@ -77,7 +77,7 @@ Response:
 
 NaN
 
-Deployment on Render
+## Deployment on Render
 
 Create a new Web Service on Render
 .
@@ -99,7 +99,7 @@ After deployment, your service will have a public URL like:
 
 https://algorithm-o8xm.onrender.com/skmdshadmansakib_gmail_com
 
-URL Example
+## URL Example
 
 To calculate LCM for x=12 and y=15:
 
