@@ -34,7 +34,7 @@ The API endpoint accepts HTTP GET requests and returns the LCM as a plain string
 
 ---
 
-## Setup & Run Locally
+## Setup & Run
 
 1. **Clone the repository**
 
