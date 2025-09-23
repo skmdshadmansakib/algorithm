@@ -38,7 +38,7 @@ The API endpoint accepts HTTP GET requests and returns the LCM as a plain string
 
 1. **Clone the repository**
 
-``bash
+bash
 git clone https://github.com/skmdshadmansakib/algorithm.git
 cd algorithm
 
